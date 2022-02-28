@@ -1,0 +1,12 @@
+[submodule "pack/general/start/ale"]
+	path = pack/general/start/ale
+	url = https://github.com/dense-analysis/ale.git
+[submodule "pack/general/start/nerdtree"]
+	path = pack/general/start/nerdtree
+	url = https://github.com/preservim/nerdtree.git
+[submodule "pack/general/start/nerdcommenter"]
+	path = pack/general/start/nerdcommenter
+	url = https://github.com/preservim/nerdcommenter.git
+[submodule "pack/general/start/vim-template"]
+	path = pack/general/start/vim-template
+	url = https://github.com/aperezdc/vim-template.git
