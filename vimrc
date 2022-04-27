@@ -1,12 +1,13 @@
 scriptencoding utf-8
 
-" 其他文件[[[1
 try
   packadd! matchit
 catch /.*/
   runtime macros/matchit.vim
 endtry
 runtime vimrc_example.vim
+
+set viminfo+=n~/.vim/viminfo
 
 source $HOME/.vim/config/plugins/airline.vim
 source $HOME/.vim/config/plugins/nerdtree.vim
