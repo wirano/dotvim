@@ -13,3 +13,6 @@
 [submodule "pack/general/start/ultisnips"]
 	path = pack/general/start/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
+[submodule "pack/general/start/nord-vim"]
+	path = pack/general/start/nord-vim
+	url = https://github.com/arcticicestudio/nord-vim.git
