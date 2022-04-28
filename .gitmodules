@@ -16,3 +16,6 @@
 [submodule "pack/general/start/nord-vim"]
 	path = pack/general/start/nord-vim
 	url = https://github.com/arcticicestudio/nord-vim.git
+[submodule "pack/general/start/fcitx-vim"]
+	path = pack/general/start/fcitx-vim
+	url = https://github.com/lilydjwg/fcitx.vim.git
