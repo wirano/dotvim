@@ -26,5 +26,6 @@ source $HOME/.vim/config/plugins/nerdcommenter.vim
 source $HOME/.vim/config/plugins/ale.vim
 source $HOME/.vim/config/plugins/airline.vim
 source $HOME/.vim/config/plugins/vim-template.vim
+source $HOME/.vim/config/plugins/markdown-preview.vim
 source $HOME/.vim/config/keymap.vim
 
