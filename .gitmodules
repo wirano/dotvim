@@ -19,3 +19,6 @@
 [submodule "pack/general/start/fcitx-vim"]
 	path = pack/general/start/fcitx-vim
 	url = https://github.com/lilydjwg/fcitx.vim.git
+[submodule "pack/markdown/opt/markdown-preview"]
+	path = pack/markdown/opt/markdown-preview
+	url = https://github.com/iamcco/markdown-preview.nvim.git
