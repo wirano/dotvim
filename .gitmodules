@@ -28,3 +28,6 @@
 [submodule "pack/general/start/tagbar"]
 	path = pack/general/start/tagbar
 	url = https://github.com/preservim/tagbar.git
+[submodule "pack/general/start/vim-nerdtree-syntax-highlight"]
+	path = pack/general/start/vim-nerdtree-syntax-highlight
+	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git
