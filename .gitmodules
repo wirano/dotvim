@@ -31,3 +31,6 @@
 [submodule "pack/general/start/vim-nerdtree-syntax-highlight"]
 	path = pack/general/start/vim-nerdtree-syntax-highlight
 	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git
+[submodule "pack/general/start/vim-devicons"]
+	path = pack/general/start/vim-devicons
+	url = https://github.com/ryanoasis/vim-devicons.git
