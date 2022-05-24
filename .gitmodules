@@ -22,3 +22,6 @@
 [submodule "pack/markdown/start/markdown-preview.nvim"]
 	path = pack/markdown/start/markdown-preview.nvim
 	url = https://github.com/iamcco/markdown-preview.nvim.git
+[submodule "pack/markdown/start/vim-markdown"]
+	path = pack/markdown/start/vim-markdown
+	url = https://github.com/preservim/vim-markdown.git
