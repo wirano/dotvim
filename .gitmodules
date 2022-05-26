@@ -37,3 +37,6 @@
 [submodule "pack/general/start/tabular"]
 	path = pack/general/start/tabular
 	url = https://github.com/godlygeek/tabular.git
+[submodule "pack/general/start/asyncrun"]
+	path = pack/general/start/asyncrun
+	url = https://github.com/skywind3000/asyncrun.vim.git
