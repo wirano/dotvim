@@ -40,3 +40,6 @@
 [submodule "pack/general/start/asyncrun"]
 	path = pack/general/start/asyncrun
 	url = https://github.com/skywind3000/asyncrun.vim.git
+[submodule "pack/general/start/asynctask"]
+	path = pack/general/start/asynctask
+	url = https://github.com/skywind3000/asynctasks.vim.git
