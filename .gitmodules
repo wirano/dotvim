@@ -10,6 +10,7 @@
 [submodule "pack/general/start/vim-template"]
 	path = pack/general/start/vim-template
 	url = https://github.com/aperezdc/vim-template.git
+    ignore = untracked
 [submodule "pack/general/start/ultisnips"]
 	path = pack/general/start/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
@@ -46,3 +47,4 @@
 [submodule "pack/general/start/vim-which-key"]
 	path = pack/general/start/vim-which-key
 	url = https://github.com/liuchengxu/vim-which-key.git
+    ignore = untracked
