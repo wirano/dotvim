@@ -43,3 +43,6 @@
 [submodule "pack/general/start/asynctask"]
 	path = pack/general/start/asynctask
 	url = https://github.com/skywind3000/asynctasks.vim.git
+[submodule "pack/general/start/vim-which-key"]
+	path = pack/general/start/vim-which-key
+	url = https://github.com/liuchengxu/vim-which-key.git
