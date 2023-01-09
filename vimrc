@@ -18,7 +18,7 @@ filetype on
 filetype plugin on
 filetype indent on
 
-colorscheme nord
+source $HOME/.vim/config/install-plugins.vim
 
 source $HOME/.vim/config/plugins/airline.vim
 source $HOME/.vim/config/plugins/nerdtree.vim
