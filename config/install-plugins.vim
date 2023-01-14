@@ -13,6 +13,8 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'xuyuanp/nerdtree-git-plugin'
 
 " edit enhencement
+Plug 'hotoo/pangu.vim', { 'for': ['markdown', 'vimwiki', 'text'] }
+Plug 'tpope/vim-surround'
 Plug 'aperezdc/vim-template'
 Plug 'SirVer/ultisnips'
 
@@ -25,8 +27,12 @@ Plug 'skywind3000/asynctasks.vim'
 
 " markdown
 Plug 'godlygeek/tabular', { 'on': 'Tabularize' } " depended by vim-markdown
-Plug 'preservim/vim-markdown', { 'for': ['markdown', 'vim-plug']}
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'preservim/vim-markdown', { 'for': ['markdown', 'vim-plug'] }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'] }
+
+" mediawiki
+Plug 'm-pilia/vim-mediawiki', { 'for': ['mediawiki'] }
+
 " misc
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] } " on-demand lazy load
 
