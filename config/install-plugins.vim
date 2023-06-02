@@ -50,7 +50,7 @@ Plug 'ludovicchabant/vim-gutentags'
 " style
 Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
-Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 Plug 'Yggdroot/indentLine'
+Plug 'arcticicestudio/nord-vim'
 
 call plug#end()

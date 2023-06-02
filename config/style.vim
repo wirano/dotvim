@@ -34,16 +34,16 @@ if has("termguicolors")
 endif
 
 " Plugin: airline {{{1
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline#extensions#ycm#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline#extensions#tabline#formatter = 'default'
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#keymap#enabled = 1
+let g:airline#extensions#xkblayout#enabled = 0
 
 " theme {{{1
-colorscheme catppuccin_frappe
+colorscheme nord
 
 " vim:fdm=marker
 
