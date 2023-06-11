@@ -7,40 +7,40 @@ Plug 'junegunn/vim-plug'
 Plug 'lilydjwg/fcitx.vim'
 
 " nerd plugin
-Plug 'preservim/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
-Plug 'xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'xuyuanp/nerdtree-git-plugin'
 
 " edit enhencement
-Plug 'hotoo/pangu.vim', { 'for': ['markdown', 'vimwiki', 'text'] }
+Plug 'hotoo/pangu.vim'
 Plug 'tpope/vim-surround'
 Plug 'aperezdc/vim-template'
 Plug 'SirVer/ultisnips'
 
 " syntax & complete
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --rust-completer --ts-completer'}
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --rust-completer --ts-completer' }
 Plug 'dense-analysis/ale'
-Plug 'tbastos/vim-lua', { 'for': 'lua' }
-Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
-Plug 'justinmk/vim-syntax-extra', { 'for': ['c', 'bison', 'flex', 'cpp'] }
-Plug 'vim-python/python-syntax', { 'for': ['python'] }
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'tbastos/vim-lua'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'justinmk/vim-syntax-extra'
+Plug 'vim-python/python-syntax'
+Plug 'rust-lang/rust.vim'
 
 " run task
 Plug 'skywind3000/asyncrun.vim'
 Plug 'skywind3000/asynctasks.vim'
 
 " markdown
-Plug 'godlygeek/tabular', { 'on': 'Tabularize' } " depended by vim-markdown
-Plug 'preservim/vim-markdown', { 'for': ['markdown'] }
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown'] }
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 " mediawiki
-Plug 'm-pilia/vim-mediawiki', { 'for': ['mediawiki'] }
+Plug 'm-pilia/vim-mediawiki'
 
 " misc
-Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] } " on-demand lazy load
+Plug 'liuchengxu/vim-which-key'
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'mhinz/vim-startify'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
