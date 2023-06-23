@@ -15,9 +15,9 @@ let g:netrw_home = $XDG_DATA_HOME."/vim"
 " Source config {{{1
 source $HOME/.vim/config/install-plugins.vim
 source $HOME/.vim/config/basic.vim
+source $HOME/.vim/config/tabsize.vim
 source $HOME/.vim/config/keymap.vim
 source $HOME/.vim/config/style.vim
-source $HOME/.vim/config/tabsize.vim
 
 source $HOME/.vim/config/plugins/nerdtree.vim
 source $HOME/.vim/config/plugins/nerdcommenter.vim

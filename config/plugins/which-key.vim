@@ -6,7 +6,11 @@ hi! default link WhichKeyFloating QuickDefaultPreview
 silent! call which_key#register('\', "g:which_key_map")
 
 " Key map dictionary {{{1
-let g:which_key_map = get(g:, 'which_key_map', {})
+if has_key(g:plugs, 'vim-which-key')
+    if !exists("which_key_map")
+        let g:which_key_map = get(g:, 'which_key_map', {})
+    endif
+endif
 
 " Buffer {{{2
 let g:which_key_map.b = {
