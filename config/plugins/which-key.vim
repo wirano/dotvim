@@ -3,14 +3,12 @@ let g:which_key_disable_default_offset = 1
 
 hi! default link WhichKeyFloating QuickDefaultPreview
 
-silent! call which_key#register('TAB', "g:which_key_map")
-nnoremap <silent> <TAB><TAB> :<C-u>WhichKey 'TAB'<CR>
-vnoremap <silent> <TAB><TAB> :<C-u>WhichKeyVisual 'TAB'<CR>let g:which_key_map = get(g:, 'which_key_map', {})
+silent! call which_key#register('\', "g:which_key_map")
 
 " Key map dictionary {{{1
-" Buffer {{{2
 let g:which_key_map = get(g:, 'which_key_map', {})
 
+" Buffer {{{2
 let g:which_key_map.b = {
 			\ 'name': '+buffer' ,
 			\ '1': ['b1'        , 'buffer 1']        ,
@@ -22,43 +20,6 @@ let g:which_key_map.b = {
 			\ 'n': ['bnext'     , 'next-buffer']     ,
 			\ 'p': ['bprevious' , 'previous-buffer'] ,
 			\ '?': ['Buffers'   , 'fzf-buffer']      ,
-			\ }
-
-" Comment {{{2
-let g:which_key_map.c = {
-			\ 'name': '+comments',
-			\ 'c': 'comment-lines',
-			\ 'n': 'comment-lines-force-nesting',
-			\ ' ': 'toggle-comment',
-			\ 'm': 'comment-lines-with-block-comment',
-			\ 'i': 'toggle-individual-line-comment',
-			\ 's': 'comment-lines-documentation-style',
-			\ 'y': 'yank-and-comment-lines',
-			\ '$': 'comment-to-the-end',
-			\ 'A': 'add-comment-to-end-of-line',
-			\ 'a': 'switch-comment-delimiters',
-			\ 'l': 'comment-left-aligned',
-			\ 'b': 'comment-both-side-aligned',
-			\ 'u': 'uncomment-lines'
-			\ }
-
-" LeaderF {{{2
-let g:which_key_map['f'] = {
-			\ 'name': '+fuzzy-finder',
-			\ ';': [':Leaderf command', 'find-commands'],
-			\ 'C': [':Leaderf colorscheme', 'find-colors'],
-			\ 'd': [':Leaderf filer', 'show-file-tree'],
-			\ 'f': [':Leaderf file', 'find-files'],
-			\ 'g': [':Leaderf rg', 'grep'],
-			\ 'l': [':Leaderf line', 'search-buffer-lines'],
-			\ 'm': [':Leaderf marks', 'show-marks'],
-			\ 'H': {
-			\     'name': '+history',
-			\     'c': [':Leaderf cmdHistory', 'show-command-history'],
-			\ },
-			\ 'h': [':Leaderf help', 'find-help'],
-			\ 'o': [':Leaderf bufTag', 'search-buffer-tags'],
-			\ 'r': [':Leaderf mru', 'find-recent-files'],
 			\ }
 
 " Window {{{2
