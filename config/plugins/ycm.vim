@@ -21,17 +21,13 @@ let g:ycm_seed_identifiers_with_syntax = 1
 
 let g:ycm_autoclose_preview_window_after_completion = 1
 
-let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
-
-let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
-
-let g:ycm_key_list_stop_completion = ['<C-y>']
-
-let g:ycm_key_invoke_completion = '<C-Space>'
-
-let g:ycm_confirm_extra_conf = 0
-
 let g:ycm_global_ycm_extra_conf = '~/.vim/config/plugins/ycm_extra_conf.py'
+
+" do not use bundled rust toolchain
+" https://github.com/ycm-core/YouCompleteMe/issues/4012
+let g:ycm_rust_toolchain_root = '/usr/lib/rustup'
+
+" let g:ycm_clangd_binary_path = 'clangd'
 
 " see as:https://zhuanlan.zhihu.com/p/33046090
 let g:ycm_semantic_triggers =  {

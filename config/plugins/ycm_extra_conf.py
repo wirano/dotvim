@@ -1,23 +1,46 @@
-# Copyright (C) 2014 Google Inc.
+# This file is NOT licensed under the GPLv3, which is the license for the rest
+# of YouCompleteMe.
 #
-# This file is part of ycmd.
+# Here's the license text for this file:
 #
-# ycmd is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# This is free and unencumbered software released into the public domain.
 #
-# ycmd is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Anyone is free to copy, modify, publish, use, compile, sell, or
+# distribute this software, either in source code form or as a compiled
+# binary, for any purpose, commercial or non-commercial, and by any
+# means.
 #
-# You should have received a copy of the GNU General Public License
-# along with ycmd.  If not, see <http://www.gnu.org/licenses/>.
- 
+# In jurisdictions that recognize copyright laws, the author or authors
+# of this software dedicate any and all copyright interest in the
+# software to the public domain. We make this dedication for the benefit
+# of the public at large and to the detriment of our heirs and
+# successors. We intend this dedication to be an overt act of
+# relinquishment in perpetuity of all present and future rights to this
+# software under copyright law.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+# OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+# ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+#
+# For more information, please refer to <http://unlicense.org/>
+
+from distutils.sysconfig import get_python_inc
+import platform
 import os
-import ycm_core
- 
+import subprocess
+
+DIR_OF_YCM = '~/.vim/plugged/YouCompleteMe/'
+DIR_OF_THIRD_PARTY = os.path.join( DIR_OF_YCM, 'third_party' )
+DIR_OF_WATCHDOG_DEPS = os.path.join( DIR_OF_YCM, 'watchdog_deps' )
+DIR_OF_THIS_SCRIPT = os.path.abspath( os.path.dirname( __file__ ) )
+SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', '.m', '.mm' ]
+
+database = None
+
 # These are the compilation flags that will be used in case there's no
 # compilation database set (by default, one is not set).
 # CHANGE THIS LIST OF FLAGS. YES, THIS IS THE DROID YOU HAVE BEEN LOOKING FOR.
@@ -25,87 +48,181 @@ flags = [
 '-Wall',
 '-Wextra',
 '-Werror',
+'-Wno-long-long',
+'-Wno-variadic-macros',
 '-fexceptions',
 '-DNDEBUG',
-# THIS IS IMPORTANT! Without a "-std=<something>" flag, clang won't know which
-# language to use when compiling headers. So it will guess. Badly. So C++
-# headers will be compiled as C headers. You don't want that so ALWAYS specify
-# a "-std=<something>".
-# For a C project, you would set this to something like 'c99' instead of
-# 'c++11'.
-'-std=c++11',
-# ...and the same thing goes for the magic -x option which specifies the
-# language that the files to be compiled are written in. This is mostly
-# relevant for c++ headers.
+# You 100% do NOT need -DUSE_CLANG_COMPLETER and/or -DYCM_EXPORT in your flags;
+# only the YCM source code needs it.
+#  '-DUSE_CLANG_COMPLETER',
+#  '-DYCM_EXPORT=',
+#  '-DYCM_ABSEIL_SUPPORTED',
+# THIS IS IMPORTANT! Without the '-x' flag, Clang won't know which language to
+# use when compiling headers. So it will guess. Badly. So C++ headers will be
+# compiled as C headers. You don't want that so ALWAYS specify the '-x' flag.
 # For a C project, you would set this to 'c' instead of 'c++'.
 '-x',
 'c++',
-'-I', '/usr/include/',	#这里是stdio.h等常用C语言库文件的位置
-'-isystem', '/usr/lib/gcc/x86_64-pc-linux-gnu/9.1.0/include/',	#gcc
-'-isystem', '/usr/include/c++/9.1.0/',	#C++的一些常用库文件的位置
-'-isystem', '/usr/include/c++/9.1.0/bits',
-# 可以在这里按照上面的格式继续添加，注意逗号
+'-isystem',
+'cpp/absl',
+'-isystem',
+'cpp/pybind11',
+'-isystem',
+'cpp/whereami',
+'-isystem',
+'cpp/BoostParts',
+'-isystem',
+get_python_inc(),
+'-isystem',
+'cpp/llvm/include',
+'-isystem',
+'cpp/llvm/tools/clang/include',
+'-I',
+'cpp/ycm',
+'-I',
+'cpp/ycm/ClangCompleter',
+'-isystem',
+'cpp/ycm/tests/gmock/googlemock/include',
+'-isystem',
+'cpp/ycm/tests/gmock/googletest/include',
+'-isystem',
+'cpp/ycm/benchmarks/benchmark/include',
+'-std=c++17',
 ]
- 
- 
+
 # Set this to the absolute path to the folder (NOT the file!) containing the
 # compile_commands.json file to use that instead of 'flags'. See here for
 # more details: http://clang.llvm.org/docs/JSONCompilationDatabase.html
 #
+# You can get CMake to generate this file for you by adding:
+#   set( CMAKE_EXPORT_COMPILE_COMMANDS 1 )
+# to your CMakeLists.txt file.
+#
 # Most projects will NOT need to set this to anything; you can just change the
-# 'flags' list of compilation flags.
+# 'flags' list of compilation flags. Notice that YCM itself uses that approach.
 compilation_database_folder = ''
- 
-if os.path.exists( compilation_database_folder ):
-  database = ycm_core.CompilationDatabase( compilation_database_folder )
-else:
-  database = None
- 
-SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', '.m', '.mm' ]
- 
-def DirectoryOfThisScript():
-  return os.path.dirname( os.path.abspath( __file__ ) )
- 
- 
+
 def IsHeaderFile( filename ):
   extension = os.path.splitext( filename )[ 1 ]
   return extension in [ '.h', '.hxx', '.hpp', '.hh' ]
- 
- 
-def GetCompilationInfoForFile( filename ):
-  # The compilation_commands.json file generated by CMake does not have entries
-  # for header files. So we do our best by asking the db for flags for a
-  # corresponding source file, if any. If one exists, the flags for that file
-  # should be good enough.
+
+
+def FindCorrespondingSourceFile( filename ):
   if IsHeaderFile( filename ):
     basename = os.path.splitext( filename )[ 0 ]
     for extension in SOURCE_EXTENSIONS:
       replacement_file = basename + extension
       if os.path.exists( replacement_file ):
-        compilation_info = database.GetCompilationInfoForFile(
-          replacement_file )
-        if compilation_info.compiler_flags_:
-          return compilation_info
+        return replacement_file
+  return filename
+
+
+def PathToPythonUsedDuringBuild():
+  try:
+    filepath = os.path.join( DIR_OF_THIS_SCRIPT, 'PYTHON_USED_DURING_BUILDING' )
+    with open( filepath ) as f:
+      return f.read().strip()
+  except OSError:
     return None
-  return database.GetCompilationInfoForFile( filename )
- 
- 
-# This is the entry point; this function is called by ycmd to produce flags for
-# a file.
-def FlagsForFile( filename, **kwargs ):
-  if not database:
+
+
+def Settings( **kwargs ):
+  # Do NOT import ycm_core at module scope.
+  import ycm_core
+
+  language = kwargs[ 'language' ]
+
+  if language == 'cfamily':
+    global compilation_database_folder
+    subdirs = [ d for d in os.listdir( DIR_OF_THIS_SCRIPT ) if 'build' in d ]
+    for d in subdirs:
+        cmake_commands = os.path.join( DIR_OF_THIS_SCRIPT, d, 'compile_commands.json')
+        if os.path.exists( cmake_commands ):
+          compilation_database_folder = os.path.dirname( cmake_commands )
+
+    global database
+    if database is None and os.path.exists( compilation_database_folder ):
+      database = ycm_core.CompilationDatabase( compilation_database_folder )
+
+    # If the file is a header, try to find the corresponding source file and
+    # retrieve its flags from the compilation database if using one. This is
+    # necessary since compilation databases don't have entries for header files.
+    # In addition, use this source file as the translation unit. This makes it
+    # possible to jump from a declaration in the header file to its definition
+    # in the corresponding source file.
+    filename = FindCorrespondingSourceFile( kwargs[ 'filename' ] )
+
+    if not database:
+      return {
+        'flags': flags,
+        'include_paths_relative_to_dir': DIR_OF_THIS_SCRIPT,
+        'override_filename': filename
+      }
+
+    compilation_info = database.GetCompilationInfoForFile( filename )
+    if not compilation_info.compiler_flags_:
+      return {}
+
+    # Bear in mind that compilation_info.compiler_flags_ does NOT return a
+    # python list, but a "list-like" StringVec object.
+    final_flags = list( compilation_info.compiler_flags_ )
+
+    # NOTE: This is just for YouCompleteMe; it's highly likely that your project
+    # does NOT need to remove the stdlib flag. DO NOT USE THIS IN YOUR
+    # ycm_extra_conf IF YOU'RE NOT 100% SURE YOU NEED IT.
+    #  try:
+    #    final_flags.remove( '-stdlib=libc++' )
+    #  except ValueError:
+    #    pass
+
     return {
-      'flags': flags,
-      'include_paths_relative_to_dir': DirectoryOfThisScript()
+      'flags': final_flags,
+      'include_paths_relative_to_dir': compilation_info.compiler_working_dir_,
+      'override_filename': filename
     }
- 
-  compilation_info = GetCompilationInfoForFile( filename )
-  if not compilation_info:
-    return None
- 
-  # Bear in mind that compilation_info.compiler_flags_ does NOT return a
-  # python list, but a "list-like" StringVec object.
-  return {
-    'flags': list( compilation_info.compiler_flags_ ),
-    'include_paths_relative_to_dir': compilation_info.compiler_working_dir_
-  }
+
+  if language == 'python':
+    return {
+      'interpreter_path': PathToPythonUsedDuringBuild(),
+      'ls': {
+        'python': {
+          'analysis': {
+            'extraPaths': [
+              os.path.join( DIR_OF_THIS_SCRIPT ),
+              os.path.join( DIR_OF_THIRD_PARTY, 'bottle' ),
+              os.path.join( DIR_OF_THIRD_PARTY, 'regex-build' ),
+              os.path.join( DIR_OF_THIRD_PARTY, 'frozendict' ),
+              os.path.join( DIR_OF_THIRD_PARTY, 'jedi_deps', 'jedi' ),
+              os.path.join( DIR_OF_THIRD_PARTY, 'jedi_deps', 'parso' ),
+              os.path.join( DIR_OF_WATCHDOG_DEPS, 'watchdog', 'build', 'lib3' ),
+              os.path.join( DIR_OF_WATCHDOG_DEPS, 'pathtools' ),
+              os.path.join( DIR_OF_THIRD_PARTY, 'waitress' )
+            ],
+            'useLibraryCodeForTypes': True
+          }
+        }
+      }
+    }
+
+  return {}
+
+
+def PythonSysPath( **kwargs ):
+  sys_path = kwargs[ 'sys_path' ]
+
+  sys_path[ 0:0 ] = [ os.path.join( DIR_OF_THIS_SCRIPT ),
+                      os.path.join( DIR_OF_THIRD_PARTY, 'bottle' ),
+                      os.path.join( DIR_OF_THIRD_PARTY, 'regex-build' ),
+                      os.path.join( DIR_OF_THIRD_PARTY, 'frozendict' ),
+                      os.path.join( DIR_OF_THIRD_PARTY, 'jedi_deps', 'jedi' ),
+                      os.path.join( DIR_OF_THIRD_PARTY, 'jedi_deps', 'parso' ),
+                      os.path.join( DIR_OF_WATCHDOG_DEPS,
+                              'watchdog',
+                              'build',
+                              'lib3' ),
+                      os.path.join( DIR_OF_WATCHDOG_DEPS, 'pathtools' ),
+                      os.path.join( DIR_OF_THIRD_PARTY, 'waitress' ) ]
+
+  sys_path.append( os.path.join( DIR_OF_THIRD_PARTY, 'jedi_deps', 'numpydoc' ) )
+  return sys_path
+
