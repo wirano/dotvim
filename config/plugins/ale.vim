@@ -5,7 +5,9 @@ let g:ale_completion_enabled = 0
 let g:ale_linters_explicit = 1
 
 " Set this. Airline will handle the rest.
-let g:airline#extensions#ale#enabled = 1
+if has_key(g:plugs, 'vim-airline')
+    let g:airline#extensions#ale#enabled = 1
+endif
 
 let g:ale_echo_msg_format = '[%linter%] %code: %%s [%severity%]'
 
@@ -15,12 +17,13 @@ let g:ale_lint_on_enter = 0
 let g:ale_lint_on_filetype_changed = 0
 
 let g:ale_linters = {
-			\ 'c': ['gcc', 'cppcheck'],
-			\ 'cpp': ['gcc', 'cppcheck'],
-			\ 'python': ['flake8', 'pylint'],
-			\ 'lua': ['luac'],
-			\ 'go': ['go build', 'gofmt'],
-			\ 'java': ['javac'],
-			\ 'javascript': ['eslint'],
-			\ }
+                    \ 'c': ['gcc', 'cppcheck'],
+                    \ 'cpp': ['gcc', 'cppcheck'],
+                    \ 'go': ['go build', 'gofmt'],
+                    \ 'java': ['javac'],
+                    \ 'javascript': ['eslint'],
+                    \ 'lua': ['luac'],
+                    \ 'python': ['flake8', 'pylint'],
+                    \ 'rust': ['analyzer'],
+                    \ }
 
