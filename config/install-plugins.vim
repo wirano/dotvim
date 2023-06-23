@@ -17,10 +17,25 @@ Plug 'hotoo/pangu.vim'
 Plug 'tpope/vim-surround'
 Plug 'aperezdc/vim-template'
 Plug 'SirVer/ultisnips'
+Plug 'kshenoy/vim-signature'
+Plug 'liuchengxu/vista.vim'
+Plug 'mhinz/vim-signify'
+
+" vim-lsp
+" Plug 'prabirshrestha/vim-lsp'
+" Plug 'prabirshrestha/asyncomplete.vim'
+" Plug 'prabirshrestha/asyncomplete-lsp.vim'
+" Plug 'prabirshrestha/asyncomplete-buffer.vim'
+" Plug 'prabirshrestha/asyncomplete-tags.vim'
+" Plug 'jsit/asyncomplete-user.vim'
+" Plug 'mattn/vim-lsp-settings'
 
 " syntax & complete
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --rust-completer --ts-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --ts-completer' }
 Plug 'dense-analysis/ale'
+if has_key(g:plugs, 'vim-lsp')
+    Plug 'rhysd/vim-lsp-ale'
+endif
 Plug 'tbastos/vim-lua'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'justinmk/vim-syntax-extra'
