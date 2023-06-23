@@ -12,7 +12,7 @@ let g:Lf_IgnoreCurrentBufferName = 1
 " popup mode
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_PreviewInPopup = 1
-let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2"}
+let g:Lf_StlSeparator = { 'left': "", 'right': ""}
 let g:Lf_StlColorscheme = 'onedark'
 let g:Lf_PopupColorscheme = 'onedark'
 
