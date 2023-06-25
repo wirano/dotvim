@@ -17,8 +17,8 @@ let g:ale_lint_on_enter = 0
 let g:ale_lint_on_filetype_changed = 0
 
 let g:ale_linters = {
-                    \ 'c': ['gcc', 'cppcheck'],
-                    \ 'cpp': ['gcc', 'cppcheck'],
+                    \ 'c': ['clangd', 'cppcheck'],
+                    \ 'cpp': ['clangd', 'cppcheck'],
                     \ 'go': ['go build', 'gofmt'],
                     \ 'java': ['javac'],
                     \ 'javascript': ['eslint'],
@@ -27,3 +27,6 @@ let g:ale_linters = {
                     \ 'rust': ['analyzer'],
                     \ }
 
+" c {{{1
+let g:ale_c_build_dir_names = ['build', 'bin', 'cmake-build-debug', 'cmake-build-release', 'cmake-build-debug-esp-idf']
+" }}}
