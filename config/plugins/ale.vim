@@ -16,6 +16,8 @@ let g:ale_set_quickfix = 1
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_filetype_changed = 0
 
+let g:ale_verilog_xvlog_executable = '/opt/Xilinx/Vivado/2023.1/bin/xvlog'
+
 let g:ale_linters = {
                     \ 'c': ['clangd', 'cppcheck'],
                     \ 'cpp': ['clangd', 'cppcheck'],
@@ -25,6 +27,7 @@ let g:ale_linters = {
                     \ 'lua': ['luac'],
                     \ 'python': ['flake8', 'pylint'],
                     \ 'rust': ['analyzer'],
+                    \ 'verilog': ['hdl-checker', 'xvlog'],
                     \ }
 
 " c {{{1
