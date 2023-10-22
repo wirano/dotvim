@@ -31,5 +31,8 @@ source $HOME/.vim/config/plugins/gutentags.vim
 source $HOME/.vim/config/plugins/cpp-enhanced-highlight.vim
 source $HOME/.vim/config/plugins/vim-signify.vim
 source $HOME/.vim/config/plugins/asyncx.vim
+source $HOME/.vim/config/plugins/indentline.vim
+source $HOME/.vim/config/plugins/vista.vim
+source $HOME/.vim/config/plugins/vim-lsp.vim
 
 " vim: fdm=marker

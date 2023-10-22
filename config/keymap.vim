@@ -106,4 +106,14 @@ if has_key(g:plugs, 'YouCompleteMe')
 endif
 " }}}
 
+if has_key(g:plugs, 'asyncomplete.vim')
+    inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+    inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+
+    imap <c-space> <Plug>(asyncomplete_force_refresh)
+    " For Vim 8 (<c-@> corresponds to <c-space>):
+    " imap <c-@> <Plug>(asyncomplete_force_refresh)
+endif
+
 " vim: fdm=marker

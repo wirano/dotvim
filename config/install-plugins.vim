@@ -22,16 +22,20 @@ Plug 'liuchengxu/vista.vim'
 Plug 'mhinz/vim-signify'
 
 " vim-lsp
-" Plug 'prabirshrestha/vim-lsp'
-" Plug 'prabirshrestha/asyncomplete.vim'
-" Plug 'prabirshrestha/asyncomplete-lsp.vim'
-" Plug 'prabirshrestha/asyncomplete-buffer.vim'
-" Plug 'prabirshrestha/asyncomplete-tags.vim'
-" Plug 'jsit/asyncomplete-user.vim'
-" Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
 
 " syntax & complete
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --ts-completer' }
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --ts-completer' }
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-buffer.vim'
+Plug 'prabirshrestha/asyncomplete-file.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/asyncomplete-tags.vim'
+Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+" Plug 'jsit/asyncomplete-user.vim'
+
 Plug 'dense-analysis/ale'
 if has_key(g:plugs, 'vim-lsp')
     Plug 'rhysd/vim-lsp-ale'
@@ -61,6 +65,7 @@ Plug 'mhinz/vim-startify'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'tpope/vim-fugitive'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'rhysd/vim-healthcheck'
 
 " style
 Plug 'vim-airline/vim-airline'
