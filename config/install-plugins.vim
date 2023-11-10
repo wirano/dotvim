@@ -21,20 +21,27 @@ Plug 'kshenoy/vim-signature'
 Plug 'liuchengxu/vista.vim'
 Plug 'mhinz/vim-signify'
 
+" coc
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 " vim-lsp
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
+if !has_key(g:plugs, 'coc.nvim')
+    Plug 'prabirshrestha/vim-lsp'
+    Plug 'mattn/vim-lsp-settings'
+endif
 
 " syntax & complete
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --ts-completer' }
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-buffer.vim'
-Plug 'prabirshrestha/asyncomplete-file.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'prabirshrestha/asyncomplete-tags.vim'
-Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
-" Plug 'jsit/asyncomplete-user.vim'
+if has_key(g:plugs, 'vim-lsp')
+    Plug 'prabirshrestha/async.vim'
+    Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'prabirshrestha/asyncomplete-buffer.vim'
+    Plug 'prabirshrestha/asyncomplete-file.vim'
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'
+    Plug 'prabirshrestha/asyncomplete-tags.vim'
+    Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+    " Plug 'jsit/asyncomplete-user.vim'
+endif
 
 Plug 'dense-analysis/ale'
 if has_key(g:plugs, 'vim-lsp')
