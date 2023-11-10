@@ -10,7 +10,8 @@ if has_key(g:plugs, 'vim-which-key')
     endif
 endif
 
-" asynctasks {{{1
+" asynctasks
+" {{{1
 if has_key(g:plugs, 'asynctasks.vim')
     noremap <silent><F9> :AsyncTask file-run<CR>
     noremap <silent><F10> :AsyncTask run<CR>
@@ -18,7 +19,8 @@ if has_key(g:plugs, 'asynctasks.vim')
 endif
 " }}}
 
-" LeaderF {{{1
+" LeaderF
+" {{{1
 if has_key(g:plugs, 'LeaderF')
     let g:Lf_ShortcutF = ''
     let g:Lf_ShortcutB = ''
@@ -64,7 +66,8 @@ if has_key(g:plugs, 'LeaderF')
 endif
 " }}}
 
-" nerdcommenter {{{1
+" nerdcommenter
+" {{{1
 if has_key(g:plugs, 'nerdcommenter')
     if has_key(g:plugs, 'vim-which-key')
         let g:which_key_map.c = {
@@ -87,7 +90,8 @@ if has_key(g:plugs, 'nerdcommenter')
 endif
 " }}}
 
-" which-key {{{1
+" which-key
+" {{{1
 if has_key(g:plugs, 'vim-which-key')
     nnoremap <silent> <leader>      :<C-u>WhichKey '\'<CR>
     nnoremap <silent> <localleader> :<C-u>WhichKey '\'<CR>
@@ -96,7 +100,8 @@ if has_key(g:plugs, 'vim-which-key')
 endif
 " }}}
 
-" YCM {{{1
+" YCM
+" {{{1
 if has_key(g:plugs, 'YouCompleteMe')
     let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
     let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
@@ -106,14 +111,26 @@ if has_key(g:plugs, 'YouCompleteMe')
 endif
 " }}}
 
+" aysncomplete
+" {{{1
 if has_key(g:plugs, 'asyncomplete.vim')
     inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-    inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+    inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<CR>"
 
     imap <c-space> <Plug>(asyncomplete_force_refresh)
     " For Vim 8 (<c-@> corresponds to <c-space>):
     " imap <c-@> <Plug>(asyncomplete_force_refresh)
 endif
+" }}}
+
+" coc-nvim
+" {{{1
+if has_key(g:plugs, 'coc.nvim')
+    inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+    inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
+    inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
+endif
+" }}}
 
 " vim: fdm=marker

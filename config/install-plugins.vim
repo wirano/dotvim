@@ -16,10 +16,13 @@ Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'hotoo/pangu.vim'
 Plug 'tpope/vim-surround'
 Plug 'aperezdc/vim-template'
-Plug 'SirVer/ultisnips'
 Plug 'kshenoy/vim-signature'
 Plug 'liuchengxu/vista.vim'
 Plug 'mhinz/vim-signify'
+
+" snippets
+Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
 
 " coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}

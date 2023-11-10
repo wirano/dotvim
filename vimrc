@@ -34,5 +34,6 @@ source $HOME/.vim/config/plugins/asyncx.vim
 source $HOME/.vim/config/plugins/indentline.vim
 source $HOME/.vim/config/plugins/vista.vim
 source $HOME/.vim/config/plugins/vim-lsp.vim
+source $HOME/.vim/config/plugins/coc-nvim.vim
 
 " vim: fdm=marker
